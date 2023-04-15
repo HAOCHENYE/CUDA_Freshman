@@ -102,3 +102,23 @@ void checkResult(float * hostRef,float * gpuRef,const int N)
   printf("Check result success!\n");
 }
 #endif//FRESHMAN_H
+
+#define TIMEIT(call, desc)\
+{\
+  double iStart,iElaps;\
+  iStart=cpuSecond();\
+  call;\
+  cudaDeviceSynchronize();\
+  iElaps = cpuSecond()-iStart;\
+  printf("Time elapsed of %s: %f sec", iElaps, desc);\
+}
+
+#define CUDATIMEIT(call, grid, block, desc, args...)\
+{\
+  double iStart,iElaps;\
+  iStart=cpuSecond();\
+  call<<<grid, block>>>(args);\
+  cudaDeviceSynchronize();\
+  iElaps = cpuSecond()-iStart;\
+  printf("Time elapsed of %s: %f sec", iElaps, desc);\
+}
