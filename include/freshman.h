@@ -110,7 +110,7 @@ void checkResult(float * hostRef,float * gpuRef,const int N)
   call;\
   cudaDeviceSynchronize();\
   iElaps = cpuSecond()-iStart;\
-  printf("Time elapsed of %s: %f sec", iElaps, desc);\
+  printf("Time elapsed of %s: %f sec\n", desc, iElaps);\
 }
 
 #define CUDATIMEIT(call, grid, block, desc, args...)\
@@ -120,5 +120,5 @@ void checkResult(float * hostRef,float * gpuRef,const int N)
   call<<<grid, block>>>(args);\
   cudaDeviceSynchronize();\
   iElaps = cpuSecond()-iStart;\
-  printf("Time elapsed of %s: %f sec", iElaps, desc);\
+  printf("Time elapsed of %s: %f sec\n", desc, iElaps);\
 }
